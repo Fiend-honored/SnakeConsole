@@ -27,6 +27,7 @@ namespace SnakeConsole
             Console.SetCursorPosition(X, Y);
             Console.Write(Sym);
             Console.SetCursorPosition(0, 0);
+            Console.CursorVisible = false;
         }
 
         public void Hide()
@@ -34,6 +35,7 @@ namespace SnakeConsole
             Console.SetCursorPosition(X, Y);
             Console.Write(' ');
             Console.SetCursorPosition(0, 0);
+            Console.CursorVisible = false;
         }
 
         public void MovePoint(Direction dir)

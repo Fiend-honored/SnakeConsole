@@ -23,16 +23,32 @@ namespace SnakeConsole
         }
 
         public void MoveSnake(Direction dir)
-
         {
-            Hide();
-            var clone = Clone();            
-            points[0].MovePoint(dir);
-            for (int i = 1; i < _lengthSnake; i++)
+            if (CheckMarginField(dir))
             {
-                points[i] = clone[i - 1];
+                Hide();
+                var clone = Clone();
+                points[0].MovePoint(dir);
+                for (int i = 1; i < _lengthSnake; i++)
+                {
+                    points[i] = clone[i - 1];
+                }
+                Draw();
             }
-            Draw();
+        }
+
+        private bool CheckMarginField(Direction dir)
+        {
+            var clonePoint = new Point[1];
+            clonePoint[0] = new Point(points[0]);
+            foreach(var p in clonePoint)
+            {
+                p.MovePoint(dir);
+                if (p.X == 0 || p.Y == 0 || p.X == GameField.WIDTH - 1 || p.Y == GameField.HEIGHT - 1)
+                    return false;
+            }
+            return true;
+
         }
 
         public void Hide()

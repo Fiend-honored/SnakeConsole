@@ -13,6 +13,7 @@ namespace SnakeConsole
             GameField.ClosedCicrleField();
 
             Snake snake = new Snake(GameField.WIDTH / 2, GameField.HEIGHT / 2, '*');
+            
 
             while (true)
             {
@@ -20,6 +21,7 @@ namespace SnakeConsole
                 {
                     var pressKey = Console.ReadKey();
                     MoveSnake(snake, pressKey.Key);
+                    FruitGenerator.GetPositionFruit();
 
                 }
             }
@@ -46,7 +48,6 @@ namespace SnakeConsole
             }
         }
 
-        // TODO: Запрет за выход границ экрана
         // TODO: Появление фрукта и увеличение длинны змеи
         // TODO: Условия проигрыша
         // TODO: Уровни

@@ -19,15 +19,14 @@ namespace SnakeConsole
                     {
                         Console.SetCursorPosition(j, i);
                         Console.Write('#');
-                    }                        
-                    if (i == HEIGHT-1 || j == WIDTH-1)
+                    }
+                    if (i == HEIGHT - 1 || j == WIDTH - 1)
                     {
                         Console.SetCursorPosition(j, i);
                         Console.Write('#');
-                    }
-                        
-                }               
-                
+                    }                        
+                }      
+              
             }
         }
     }
