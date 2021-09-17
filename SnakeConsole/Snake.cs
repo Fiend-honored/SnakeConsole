@@ -31,7 +31,7 @@ namespace SnakeConsole
                 points[0].MovePoint(dir);
                 if (points[0].X == FruitGenerator.X && points[0].Y == FruitGenerator.Y)
                 {
-                    GrowthSnake(clone);
+                    GrowthSnake();
                 }
 
                 for (int i = 1; i < _lengthSnake; i++)
@@ -42,7 +42,7 @@ namespace SnakeConsole
             }
         }
 
-        private void GrowthSnake(Point[] clone)
+        private void GrowthSnake()
         {
             _lengthSnake++;
 
@@ -70,10 +70,20 @@ namespace SnakeConsole
             {
                 p.MovePoint(dir);
                 if (p.X == 0 || p.Y == 0 || p.X == GameField.WIDTH - 1 || p.Y == GameField.HEIGHT - 1)
+                {
+                    GameOver();
                     return false;
+                }
+              
             }
             return true;
 
+        }
+
+        private void GameOver()
+        {
+            Console.SetCursorPosition(GameField.WIDTH / 2 - 8, GameField.HEIGHT / 2);
+            Console.Write("G A M E   O V E R");
         }
 
         public void Hide()
