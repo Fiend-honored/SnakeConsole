@@ -4,13 +4,12 @@ namespace SnakeConsole
 {
     class Program
     {
-
-
         static void Main(string[] args)
         {
             Console.SetWindowSize(GameField.WIDTH, GameField.HEIGHT);
             Console.SetBufferSize(GameField.WIDTH, GameField.HEIGHT);
             GameField.ClosedCicrleField();
+            FruitGenerator.GetPositionFruit();
 
             Snake snake = new Snake(GameField.WIDTH / 2, GameField.HEIGHT / 2, '*');
             
@@ -21,7 +20,7 @@ namespace SnakeConsole
                 {
                     var pressKey = Console.ReadKey();
                     MoveSnake(snake, pressKey.Key);
-                    FruitGenerator.GetPositionFruit();
+                    
 
                 }
             }
@@ -48,9 +47,13 @@ namespace SnakeConsole
             }
         }
 
-        // TODO: Появление фрукта и увеличение длинны змеи
         // TODO: Условия проигрыша
-        // TODO: Уровни
+        // TODO: Авто движение змеи
+        // TODO: Оптимизация появления фрукта
+        // TODO: Уровни        
+        // TODO: Оптимизация работы с памятью
+        // TODO: Меню
 
     }
 }
+

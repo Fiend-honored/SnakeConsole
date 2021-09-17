@@ -29,6 +29,11 @@ namespace SnakeConsole
                 Hide();
                 var clone = Clone();
                 points[0].MovePoint(dir);
+                if (points[0].X == FruitGenerator.X && points[0].Y == FruitGenerator.Y)
+                {
+                    GrowthSnake(clone);
+                }
+
                 for (int i = 1; i < _lengthSnake; i++)
                 {
                     points[i] = clone[i - 1];
@@ -37,11 +42,31 @@ namespace SnakeConsole
             }
         }
 
+        private void GrowthSnake(Point[] clone)
+        {
+            _lengthSnake++;
+
+            var pointsCopy = new Point[_lengthSnake];
+            pointsCopy[0] = new Point(points[0]);
+            for(int i = 1; i < _lengthSnake; i++)
+            {
+                pointsCopy[i] = new Point(points[i - 1]);
+            }
+
+            points = new Point[_lengthSnake];
+            for(int i = 0; i < _lengthSnake; i++)
+            {
+                points[i] = pointsCopy[i];
+            }
+
+            FruitGenerator.GetPositionFruit();
+        }
+
         private bool CheckMarginField(Direction dir)
         {
             var clonePoint = new Point[1];
             clonePoint[0] = new Point(points[0]);
-            foreach(var p in clonePoint)
+            foreach (var p in clonePoint)
             {
                 p.MovePoint(dir);
                 if (p.X == 0 || p.Y == 0 || p.X == GameField.WIDTH - 1 || p.Y == GameField.HEIGHT - 1)
@@ -71,10 +96,10 @@ namespace SnakeConsole
             var clonePoints = new Point[_lengthSnake];
             for (int i = 0; i < _lengthSnake; i++)
             {
-                clonePoints[i] = new Point(points[i]);                
+                clonePoints[i] = new Point(points[i]);
             }
-            return clonePoints;    
-            
+            return clonePoints;
+
         }
     }
 }

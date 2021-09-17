@@ -6,8 +6,9 @@ namespace SnakeConsole
 {
     class FruitGenerator
     {
-        static int X { get; set; }
-        static int Y { get; set; }
+        public static int X { get; set; }
+
+        public static int Y { get; set; }
 
         static Random random = new Random();
 
@@ -19,7 +20,6 @@ namespace SnakeConsole
             Y = yPositionFruit;
             Console.SetCursorPosition(X, Y);
             Console.Write('*');
-
         }
     }
 }
