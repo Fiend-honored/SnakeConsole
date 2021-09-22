@@ -24,7 +24,7 @@ namespace SnakeConsole
 
         public void MoveSnake(Direction dir)
         {
-            if (CheckMarginField(dir))
+            if (CheckSnakeStrike(dir))
             {
                 Hide();
                 var clone = Clone();
@@ -41,7 +41,6 @@ namespace SnakeConsole
                 Draw();
             }
         }
-
         private void GrowthSnake()
         {
             _lengthSnake++;
@@ -62,28 +61,34 @@ namespace SnakeConsole
             FruitGenerator.GetPositionFruit();
         }
 
-        private bool CheckMarginField(Direction dir)
+        private bool CheckSnakeStrike(Direction dir)
         {
             var clonePoint = new Point[1];
-            clonePoint[0] = new Point(points[0]);
+            clonePoint[0] = new Point(points[0]);              
             foreach (var p in clonePoint)
             {
                 p.MovePoint(dir);
-                if (p.X == 0 || p.Y == 0 || p.X == GameField.WIDTH - 1 || p.Y == GameField.HEIGHT - 1)
+                if (p.X == 0 || p.Y == 0 || p.X == GameField.WIDTH - 1 || p.Y == GameField.HEIGHT - 1)  // Check strike to border.               
+                    GameOver();                 
+                for (int i = 0; i < _lengthSnake; i++)
                 {
-                    GameOver();
-                    return false;
+                    if (p.X == points[i].X && p.Y == points[i].Y)  // Check strike to youself.                  
+                        GameOver();                    
                 }
-              
-            }
+                return true;
+            } 
             return true;
 
         }
 
         private void GameOver()
         {
-            Console.SetCursorPosition(GameField.WIDTH / 2 - 8, GameField.HEIGHT / 2);
-            Console.Write("G A M E   O V E R");
+            while (true)
+            {
+                Console.SetCursorPosition(GameField.WIDTH / 2 - 8, GameField.HEIGHT / 2);
+                Console.Write("G A M E   O V E R");
+            }
+
         }
 
         public void Hide()
