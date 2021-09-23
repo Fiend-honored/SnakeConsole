@@ -74,8 +74,8 @@ namespace SnakeConsole
             Monitor.Exit(_lockObject);
         }
 
+        // TODO: Отображение счета и времени игры
         // TODO: Уровни сложности
-        // TODO: Оптимизация работы с памятью
         // TODO: Меню
 
     }
