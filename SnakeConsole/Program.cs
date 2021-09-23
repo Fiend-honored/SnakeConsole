@@ -74,8 +74,7 @@ namespace SnakeConsole
             Monitor.Exit(_lockObject);
         }
 
-        // TODO: Оптимизация появления фрукта
-        // TODO: Уровни
+        // TODO: Уровни сложности
         // TODO: Оптимизация работы с памятью
         // TODO: Меню
 
