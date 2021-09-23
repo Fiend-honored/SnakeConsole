@@ -10,16 +10,34 @@ namespace SnakeConsole
 
         public static int Y { get; set; }
 
-        static Random random = new Random();
+        private static Random _random = new Random();
 
         public static void GetPositionFruit()
         {
-            int xPositionFruit = random.Next(1, GameField.WIDTH - 1);
-            X = xPositionFruit;
-            int yPositionFruit = random.Next(1, GameField.HEIGHT - 1);
-            Y = yPositionFruit;
+            CheckFruitInSnake();
             Console.SetCursorPosition(X, Y);
             Console.Write('*');
+        }
+
+        private static void CheckFruitInSnake()
+        {            
+            while (true)
+            {
+                int xPositionFruit = _random.Next(1, GameField.WIDTH - 1);
+                int yPositionFruit = _random.Next(1, GameField.HEIGHT - 1);
+                int counter = 0;
+                foreach (var p in Snake.points)
+                {
+                    if(p.X == xPositionFruit && p.Y == yPositionFruit)
+                        counter++;
+                }
+                if (counter == 0)
+                {
+                    X = xPositionFruit;
+                    Y = yPositionFruit;
+                    break;
+                }                                                    
+            }           
         }
     }
 }

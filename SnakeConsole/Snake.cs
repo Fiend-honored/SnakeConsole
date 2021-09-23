@@ -5,8 +5,9 @@ namespace SnakeConsole
     class Snake
     {
         static int _lengthSnake = 4;
+        const int START_LENGTH_SNAKE = 4;
 
-        Point[] points = new Point[_lengthSnake];
+        public static Point[] points = new Point[_lengthSnake];       
 
         public Snake(int x, int y, char c)
         {
@@ -20,6 +21,9 @@ namespace SnakeConsole
                 points[i] = new Point(x + i, y, c);
             }
             Draw();
+            // Here i`m running mechanism of appearance a fruit.
+            if (_lengthSnake == START_LENGTH_SNAKE)
+                FruitGenerator.GetPositionFruit();
         }
 
         public void MoveSnake(Direction dir)
@@ -88,7 +92,6 @@ namespace SnakeConsole
                 Console.SetCursorPosition(GameField.WIDTH / 2 - 8, GameField.HEIGHT / 2);
                 Console.Write("G A M E   O V E R");
             }
-
         }
 
         public void Hide()

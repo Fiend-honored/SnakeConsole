@@ -19,8 +19,8 @@ namespace SnakeConsole
             Console.SetWindowSize(GameField.WIDTH, GameField.HEIGHT);
             Console.SetBufferSize(GameField.WIDTH, GameField.HEIGHT);
             GameField.ClosedCicrleField();
-            FruitGenerator.GetPositionFruit();
-            
+            // FruitGenerator.GetPositionFruit();
+
             SetTimer();
 
             while (true)
